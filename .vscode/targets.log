@@ -1,3 +1,4 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 3.81
 # Copyright (C) 2006  Free Software Foundation, Inc.
 # This is free software; see the source for copying conditions.
@@ -9,7 +10,7 @@
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Apr 26 14:41:17 2022
+# Make data base, printed on Wed Apr 27 14:05:16 2022
 
 # Variables
 
@@ -18,6 +19,7 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 ?F = $(notdir $?)
 # environment
+ 
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
@@ -42,7 +44,7 @@ __CFBundleIdentifier = com.microsoft.VSCodeInsiders
 # environment
 CGO_CFLAGS = -I/opt/local/zulu8.56.0.21-ca-jdk8.0.302-macosx_x64/include -I/opt/local/zulu8.56.0.21-ca-jdk8.0.302-macosx_x64/include/darwin
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/xh/jcfp5l3n30b3c0qd4hv4dp5c0000gn/T/vscode-ipc-04b9e267-eaa5-444f-8dd2-be43240b4377.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/xh/jcfp5l3n30b3c0qd4hv4dp5c0000gn/T/vscode-ipc-a684a2ad-bdbe-47a7-a06f-b2a2331a2db2.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -52,14 +54,15 @@ PATH = /opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
+LaunchInstanceID = D81ABB7C-6344-4C5B-AC62-EFDFB0C97F0A
+# environment
 VSCODE_LOG_STACK = true
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.NtjMKWs5fl/Listeners
- 
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.wTMItA8dyH/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -83,7 +86,7 @@ VSCODE_CODE_CACHE_PATH = /Users/kangkai/Library/Application Support/Code - Insid
 # environment
 LOGNAME = kangkai
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 ZSH = /Users/kangkai/.oh-my-zsh
 # environment
@@ -150,6 +153,8 @@ MAKEFILES :=
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186b4
 # automatic
 ^F = $(notdir $^)
 # default
@@ -159,9 +164,10 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 7836
+VSCODE_PID = 626
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=9/97=9%
+ 
+# Load=75/1024=7%, Rehash=0, Collisions=9/99=9%
 
 # Pattern-specific Variable Values
 
@@ -169,7 +175,7 @@ VSCODE_PID = 7836
 
 # Directories
 
-# . (device 16777232, inode 8907788): 10 files, no impossibilities.
+# . (device 16777229, inode 8907788): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -202,7 +208,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-26 14:41:07
+#  Last modified 2022-04-26 14:41:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -214,7 +220,7 @@ build: src/lib.rs
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 5):
 	cargo build --target wasm32-wasi --release
-	# cp -f target/wasm32-wasi/release/show_image.wasm target/wasm32-wasi/release/show_image.kpe
+	cp -f target/wasm32-wasi/release/show_media.wasm target/wasm32-wasi/release/show-media.kpe
 	
 
 # Not a target:
@@ -251,6 +257,6 @@ src/lib.rs:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Apr 26 14:41:17 2022
+# Finished Make data base on Wed Apr 27 14:05:16 2022
 
  

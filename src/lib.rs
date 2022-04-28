@@ -58,7 +58,6 @@ impl kplayer::plugin::BasePlugin for ShowMovie {
     ) -> std::vec::Vec<std::string::String> {
         let mut args: Vec<std::string::String> = Vec::new();
         args.push(String::from("filename=exmaple.png"));
-        args.push(String::from("loop=0"));
         args
     }
     fn get_author(&self) -> std::string::String {
@@ -145,6 +144,60 @@ impl kplayer::plugin::BasePlugin for SetPts {
     }
 }
 
+// loop
+struct Loop {
+    loop_count: String,
+}
+impl Loop {
+    fn new() -> Self {
+        Loop {
+            loop_count: String::from("-1"),
+        }
+    }
+}
+impl kplayer::plugin::BasePlugin for Loop {
+    fn get_name(&self) -> String {
+        String::from("show-media")
+    }
+    fn get_args(
+        &mut self,
+        _custom_args: std::collections::HashMap<String, String>,
+    ) -> std::vec::Vec<std::string::String> {
+        let value = _custom_args.get("count");
+        if value != None {
+            self.loop_count = value.unwrap().to_string();
+        }
+
+        let mut args: Vec<std::string::String> = Vec::new();
+        args.push(format!("loop={}", self.loop_count));
+        args.push(String::from("size=32767"));
+        args
+    }
+    fn get_author(&self) -> std::string::String {
+        String::from("kplayer")
+    }
+    fn get_filter_name(&self) -> std::string::String {
+        String::from("loop")
+    }
+    fn get_media_type(&self) -> kplayer::plugin::MediaType {
+        kplayer::plugin::MediaType::MediaTypeVideo
+    }
+    fn validate_user_args(
+        &self,
+        _args: std::collections::HashMap<String, String>,
+    ) -> std::result::Result<bool, &'static str> {
+        let framerate = self.loop_count.parse::<i32>();
+        match framerate {
+            Err(_err) => {
+                return Err("count value of number invalid");
+            }
+            Ok(_) => {}
+        }
+
+        Ok(true)
+    }
+}
+
 // scale
 struct Scale {}
 impl Scale {
@@ -185,4 +238,4 @@ impl kplayer::plugin::BasePlugin for Scale {
     }
 }
 
-kplayer_rust_wrap::export!(ShowOverlay, Scale, SetPts, ShowMovie);
+kplayer_rust_wrap::export!(ShowOverlay, Scale, SetPts, Loop, ShowMovie);
