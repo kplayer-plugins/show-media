@@ -23,6 +23,9 @@ impl kplayer::plugin::BasePlugin for ShowOverlay {
         args.push(String::from("shortest=1"));
         args
     }
+    fn get_allow_custom_args(&self) -> Vec<&'static str> {
+        vec!["x", "y"]
+    }
     fn get_author(&self) -> std::string::String {
         String::from("kplayer")
     }
@@ -59,6 +62,9 @@ impl kplayer::plugin::BasePlugin for ShowMovie {
         let mut args: Vec<std::string::String> = Vec::new();
         args.push(String::from("filename=exmaple.png"));
         args
+    }
+    fn get_allow_custom_args(&self) -> Vec<&'static str> {
+        vec!["filename"]
     }
     fn get_author(&self) -> std::string::String {
         String::from("kplayer")
@@ -98,7 +104,7 @@ struct SetPts {
 impl SetPts {
     fn new() -> Self {
         SetPts {
-            framerate: String::from("5"),
+            framerate: String::from("FRAME_RATE"),
         }
     }
 }
@@ -132,12 +138,14 @@ impl kplayer::plugin::BasePlugin for SetPts {
         &self,
         _args: std::collections::HashMap<String, String>,
     ) -> std::result::Result<bool, &'static str> {
-        let framerate = self.framerate.parse::<i32>();
-        match framerate {
-            Err(_err) => {
-                return Err("framerate value of number invalid");
+        if self.framerate != "FRAME_RATE" {
+            let framerate = self.framerate.parse::<i32>();
+            match framerate {
+                Err(_err) => {
+                    return Err("framerate value of number invalid");
+                }
+                Ok(_) => {}
             }
-            Ok(_) => {}
         }
 
         Ok(true)
@@ -172,6 +180,9 @@ impl kplayer::plugin::BasePlugin for Loop {
         args.push(format!("loop={}", self.loop_count));
         args.push(String::from("size=32767"));
         args
+    }
+    fn get_allow_custom_args(&self) -> Vec<&'static str> {
+        vec!["loop"]
     }
     fn get_author(&self) -> std::string::String {
         String::from("kplayer")
@@ -217,6 +228,9 @@ impl kplayer::plugin::BasePlugin for Scale {
         args.push(String::from("w=100"));
         args.push(String::from("h=100"));
         args
+    }
+    fn get_allow_custom_args(&self) -> Vec<&'static str> {
+        vec!["w", "h"]
     }
     fn get_author(&self) -> std::string::String {
         String::from("kplayer")
