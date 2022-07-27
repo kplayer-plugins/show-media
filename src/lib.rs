@@ -125,6 +125,9 @@ impl kplayer::plugin::BasePlugin for SetPts {
         args.push(format!("N/{}/TB=null", self.framerate));
         args
     }
+    fn get_allow_custom_args(&self) -> Vec<&'static str> {
+        vec!["framerate"]
+    }
     fn get_author(&self) -> std::string::String {
         String::from("kplayer")
     }
